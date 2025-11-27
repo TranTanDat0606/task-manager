@@ -11,7 +11,7 @@ const AddTask = () => {
 
       <Button
         size="large"
-        className="rounded-xl! h-[50px]! bg-gradient-to-r! from-pink-400! to-purple-500! text-white! shadow-md px-8!"
+        className="rounded-xl! h-[50px]! bg-gradient-to-r! from-pink-400! to-purple-500! text-white! shadow-md! px-[33px]!"
       >
         Add
       </Button>

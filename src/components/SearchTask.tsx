@@ -7,7 +7,7 @@ const SearchTask = () => {
       <Input
         size="large"
         prefix={<SearchOutlined />}
-        placeholder=" Search the app.."
+        placeholder=" Search the task.."
         className="rounded-xl border-none! shadow-md! bg-gradient-to-r! from-orange-200/40! to-purple-200/40! placeholder:text-slate-500! p-3!"
       />
 
