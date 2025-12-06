@@ -72,7 +72,8 @@ export default function TaskManager() {
               : t.disabled
               ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed"
               : "bg-white border-slate-200 text-slate-600"
-          } ${theme === "light" ? "bg-white" : "!bg-zinc-900 !text-white"}`}
+          } 
+          ${theme === "light" ? "bg-white" : "!bg-zinc-900 !text-white"}`}
         >
           <Icon className={activeTab === t.key ? "!text-white" : t.iconClass} />
           {t.label} &nbsp; {t.count}
