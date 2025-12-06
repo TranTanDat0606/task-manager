@@ -1,4 +1,4 @@
-export type TabsKey = "all" | "active" | "completed";
+export type TabsKey = "all" | "active" | "complete";
 
 export interface ITask {
   id: string;
@@ -8,7 +8,15 @@ export interface ITask {
 }
 
 export interface ITabsState {
-  tabs: ITask[];
+  tasks: ITask[];
   activeTab: TabsKey;
   search: string;
 }
+
+export type TaskAction =
+  | { type: "ADD_TASK"; payload: { name: string } }
+  | { type: "TOGGLE_TASK"; payload: { id: string } }
+  | { type: "DELETE_TASK"; payload: { id: string } }
+  | { type: "DELETE_ALL" }
+  | { type: "SET_ACTIVE_TAB"; payload: { tab: TabsKey } }
+  | { type: "SET_SEARCH"; payload: { keyword: string } };
