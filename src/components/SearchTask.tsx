@@ -4,23 +4,30 @@ import { useTaskContext } from "../contexts/task/TaskContext";
 import React from "react";
 
 const SearchTask = () => {
-  const { dispatch } = useTaskContext();
+  const { tasks, activeTab, dispatch } = useTaskContext();
   const [value, setValue] = React.useState("");
 
   const handleSearch = () => {
-    const keyword = value.trim();
+    const keyword = value.trim().toLowerCase();
+    if (activeTab === "all") return;
 
-    if (!keyword) {
-      dispatch({ type: "SET_SEARCH", payload: { keyword: "" } });
-      return;
-    }
+    const filteredTasks = tasks.filter((t) => {
+      if (activeTab === "complete") return t.completed;
+      if (activeTab === "active") return !t.completed;
+      return true;
+    });
 
-    dispatch({ type: "SET_SEARCH", payload: { keyword: value } });
+    const hasMatch = keyword === "" || filteredTasks.some((t) => t.name.toLowerCase().includes(keyword));
+    const differenValue = !hasMatch;
+
+    dispatch({ type: "SET_SEARCH_DIFFEREN", payload: { searchDifferen: differenValue } });
+    dispatch({ type: "SET_SEARCH", payload: { keyword: keyword } });
+
     setValue("");
   };
 
   return (
-    <div className="flex items-center gap-3 mt-3 mb-4">
+    <div className="flex items-center gap-3 mt-3 mb-5">
       <Input
         size="large"
         prefix={<SearchOutlined />}

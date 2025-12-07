@@ -13,7 +13,7 @@ const AddTask = () => {
   };
 
   return (
-    <div className="flex items-center gap-3 mt-3 mb-4">
+    <div className="flex items-center gap-3 mt-3 mb-5">
       <Input
         size="large"
         placeholder="Add a new task..."
@@ -24,7 +24,7 @@ const AddTask = () => {
 
       <Button
         size="large"
-        className="rounded-xl! h-[50px]! border-none! bg-gradient-to-r! from-pink-400! to-purple-500! text-white! shadow-md! px-[33px]!"
+        className="rounded-xl! h-[50px]! border-none! bg-gradient-to-r! from-pink-400! to-purple-500! text-white! shadow-md! px-[33.8px]!"
         onClick={handleAdd}
       >
         Add

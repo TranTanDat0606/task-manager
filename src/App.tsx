@@ -3,9 +3,14 @@ import TabsNavigation from "./components/TabsNavigation";
 import { Button } from "antd";
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import { useThemeContext } from "./contexts/theme/ThemeContext";
+import { useTaskContext } from "./contexts/task/TaskContext";
 
 function App() {
   const { theme, toggleTheme } = useThemeContext();
+  const { tasks } = useTaskContext();
+
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter((t) => t.completed).length;
 
   return (
     <div className="min-h-screen w-full bg-white relative transition-colors duration-200 flex items-start justify-center">
@@ -48,6 +53,10 @@ function App() {
         <p className="text-center mt-2 mb-5 text-slate-600 font-semibold">Stay organized, get things done ✨</p>
 
         <TabsNavigation />
+
+        <p className="absolute bottom-8 left-65">
+          {completedTasks} of {totalTasks} tasks completed
+        </p>
       </div>
     </div>
   );

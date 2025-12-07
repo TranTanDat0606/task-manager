@@ -22,13 +22,34 @@ export const reducer = (state: ITabsState, action: TaskAction): ITabsState => {
       return { ...state, tasks: state.tasks.filter((t) => t.id !== action.payload.id) };
     }
     case "DELETE_ALL": {
-      return { ...state, tasks: [] };
+      return {
+        ...state,
+        tasks: [],
+        search: { active: "", complete: "" },
+        differen: { active: false, complete: false },
+      };
     }
     case "SET_ACTIVE_TAB": {
       return { ...state, activeTab: action.payload.tab };
     }
     case "SET_SEARCH": {
-      return { ...state, search: action.payload.keyword };
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          [state.activeTab]: action.payload.keyword,
+        },
+      };
+    }
+
+    case "SET_SEARCH_DIFFEREN": {
+      return {
+        ...state,
+        differen: {
+          ...state.differen,
+          [state.activeTab]: action.payload.searchDifferen,
+        },
+      };
     }
 
     default:

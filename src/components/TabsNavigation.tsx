@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { StarFilled, ThunderboltFilled, CheckSquareFilled, DeleteFilled } from "@ant-design/icons";
 import { message, Popconfirm, Tabs, type PopconfirmProps } from "antd";
 
@@ -14,8 +12,7 @@ import SearchTask from "./SearchTask";
 
 export default function TaskManager() {
   const { theme } = useThemeContext();
-  const { tasks, dispatch } = useTaskContext();
-  const [activeTab, setActiveTab] = useState<TabsKey>("all");
+  const { tasks, activeTab, dispatch } = useTaskContext();
 
   const counts = {
     all: tasks.length,
@@ -83,17 +80,12 @@ export default function TaskManager() {
     };
   });
 
-  const handleChangeTabs = (key: TabsKey) => {
-    setActiveTab(key);
-    dispatch({ type: "SET_ACTIVE_TAB", payload: { tab: key } });
-  };
-
   return (
     <>
       <div className="relative">
         <Tabs
           activeKey={activeTab}
-          onChange={(key) => handleChangeTabs(key as TabsKey)}
+          onChange={(key) => dispatch({ type: "SET_ACTIVE_TAB", payload: { tab: key as TabsKey } })}
           items={tabsWithLabel}
           tabBarGutter={16}
         />

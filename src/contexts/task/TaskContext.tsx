@@ -13,6 +13,7 @@ const loadInitialState = (): ITabsState => {
       const parsed = JSON.parse(raw) as ITabsState;
       return {
         ...parsed,
+        differen: parsed.differen ?? false,
         tasks: parsed.tasks.map((t) => ({ ...t, createdAt: new Date(t.createdAt) })),
       };
     }
@@ -20,7 +21,7 @@ const loadInitialState = (): ITabsState => {
     console.error("Failed to load state:", err);
   }
 
-  return { tasks: [], activeTab: "all", search: "" };
+  return { tasks: [], activeTab: "all", search: { active: "", complete: "" }, differen: false };
 };
 
 interface TaskContextValue extends ITabsState {
@@ -39,16 +40,18 @@ export const TaskContextProvider = ({ children }: React.PropsWithChildren) => {
 
   // visibleTasks render UI phụ thuộc vào tab + search
   const visibleTasks = React.useMemo(() => {
-    const kw = state.search.trim().toLowerCase();
+    const kw =
+      state.activeTab === "all"
+        ? ""
+        : state.search[state.activeTab as "active" | "complete"]?.trim().toLowerCase() || "";
 
     return state.tasks.filter((t) => {
       const matchSearch = kw ? t.name.toLowerCase().includes(kw) : true;
 
       if (state.activeTab === "complete") return t.completed && matchSearch;
-
       if (state.activeTab === "active") return !t.completed && matchSearch;
 
-      return matchSearch;
+      return true;
     });
   }, [state.tasks, state.activeTab, state.search]);
 
