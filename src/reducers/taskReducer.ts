@@ -25,29 +25,26 @@ export const reducer = (state: ITabsState, action: TaskAction): ITabsState => {
       return {
         ...state,
         tasks: [],
-        search: { active: "", complete: "" },
-        differen: { active: false, complete: false },
+        filters: {
+          active: { search: "", differen: false },
+          complete: { search: "", differen: false },
+        },
       };
     }
     case "SET_ACTIVE_TAB": {
       return { ...state, activeTab: action.payload.tab };
     }
     case "SET_SEARCH": {
-      return {
-        ...state,
-        search: {
-          ...state.search,
-          [state.activeTab]: action.payload.keyword,
-        },
-      };
-    }
+      const { tab, keyword, differen } = action.payload;
 
-    case "SET_SEARCH_DIFFEREN": {
       return {
         ...state,
-        differen: {
-          ...state.differen,
-          [state.activeTab]: action.payload.searchDifferen,
+        filters: {
+          ...state.filters,
+          [tab]: {
+            search: keyword,
+            differen: differen,
+          },
         },
       };
     }

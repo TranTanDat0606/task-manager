@@ -20,8 +20,14 @@ const SearchTask = () => {
     const hasMatch = keyword === "" || filteredTasks.some((t) => t.name.toLowerCase().includes(keyword));
     const differenValue = !hasMatch;
 
-    dispatch({ type: "SET_SEARCH_DIFFEREN", payload: { searchDifferen: differenValue } });
-    dispatch({ type: "SET_SEARCH", payload: { keyword: keyword } });
+    dispatch({
+      type: "SET_SEARCH",
+      payload: {
+        tab: activeTab,
+        keyword,
+        differen: differenValue,
+      },
+    });
 
     setValue("");
   };

@@ -6,7 +6,7 @@ import { useTaskContext } from "../contexts/task/TaskContext";
 
 const Tasks = () => {
   const { theme } = useThemeContext();
-  const { activeTab, visibleTasks, differen, dispatch } = useTaskContext();
+  const { activeTab, visibleTasks, filters, dispatch } = useTaskContext();
 
   const getEmptyMessage = () => {
     const baseClass = `text-center py-12 ${theme === "light" ? "text-gray-400" : "text-gray-600"}`;
@@ -15,7 +15,7 @@ const Tasks = () => {
       return <p className={baseClass}>No tasks yet. Add one above! 👆</p>;
     }
 
-    const isDifferent = differen[activeTab] === true;
+    const isDifferent = filters[activeTab]?.differen === true;
 
     if (isDifferent) {
       return (

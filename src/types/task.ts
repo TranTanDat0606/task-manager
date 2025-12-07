@@ -7,11 +7,18 @@ export interface ITask {
   createdAt: Date;
 }
 
+export interface ITabFilter {
+  search: string;
+  differen: boolean;
+}
+
 export interface ITabsState {
   tasks: ITask[];
   activeTab: TabsKey;
-  search: { active: string; complete: string };
-  differen: { active: boolean; complete: boolean };
+  filters: {
+    active: ITabFilter;
+    complete: ITabFilter;
+  };
 }
 
 export type TaskAction =
@@ -20,5 +27,4 @@ export type TaskAction =
   | { type: "DELETE_TASK"; payload: { id: string } }
   | { type: "DELETE_ALL" }
   | { type: "SET_ACTIVE_TAB"; payload: { tab: TabsKey } }
-  | { type: "SET_SEARCH"; payload: { keyword: string } }
-  | { type: "SET_SEARCH_DIFFEREN"; payload: { searchDifferen: boolean } };
+  | { type: "SET_SEARCH"; payload: { tab: "active" | "complete"; keyword: string; differen: boolean } };
