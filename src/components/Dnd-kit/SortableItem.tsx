@@ -1,7 +1,12 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-export function SortableItem({ id, children }) {
+interface SortableItemProps {
+  id: string | number; // 👈 type đúng của dnd-kit
+  children: React.ReactNode; // 👈 type đúng của React
+}
+
+export function SortableItem({ id, children }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {

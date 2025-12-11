@@ -1,4 +1,3 @@
-import React from "react";
 import { WarningOutlined } from "@ant-design/icons";
 import { useTaskContext } from "../../contexts/task/TaskContext";
 import { useThemeContext } from "../../contexts/theme/ThemeContext";
