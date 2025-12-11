@@ -49,6 +49,21 @@ export const reducer = (state: ITabsState, action: TaskAction): ITabsState => {
       };
     }
 
+    case "REORDER_TASKS": {
+      const { oldIndex, newIndex } = action.payload;
+
+      const newTasks = [...state.tasks];
+
+      // Move item
+      const [moved] = newTasks.splice(oldIndex, 1);
+      newTasks.splice(newIndex, 0, moved);
+
+      return {
+        ...state,
+        tasks: newTasks,
+      };
+    }
+
     default:
       return state;
   }

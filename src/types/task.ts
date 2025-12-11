@@ -27,4 +27,5 @@ export type TaskAction =
   | { type: "DELETE_TASK"; payload: { id: string } }
   | { type: "DELETE_ALL" }
   | { type: "SET_ACTIVE_TAB"; payload: { tab: TabsKey } }
-  | { type: "SET_SEARCH"; payload: { tab: "active" | "complete"; keyword: string; differen: boolean } };
+  | { type: "SET_SEARCH"; payload: { tab: "active" | "complete"; keyword: string; differen: boolean } }
+  | { type: "REORDER_TASKS"; payload: { oldIndex: number; newIndex: number } };

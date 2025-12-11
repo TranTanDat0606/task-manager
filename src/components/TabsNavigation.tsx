@@ -6,9 +6,9 @@ import type { TabsKey } from "../types/task";
 import { useThemeContext } from "../contexts/theme/ThemeContext";
 import { useTaskContext } from "../contexts/task/TaskContext";
 
-import Tasks from "./Tasks";
 import AddTask from "./AddTask";
 import SearchTask from "./SearchTask";
+import TasksContainer from "./Tasks/TasksContainer";
 
 export default function TaskManager() {
   const { theme } = useThemeContext();
@@ -63,7 +63,7 @@ export default function TaskManager() {
       children: t.children,
       label: (
         <div
-          className={`flex items-center ml-[2px] gap-2 px-4 py-2 rounded-xl font-semibold shadow-sm transition-all duration-500 ${
+          className={`flex items-center ml-[2px] gap-2 py-2 px-4  rounded-xl font-semibold shadow-sm transition-all duration-500 ${
             activeTab === t.key
               ? `bg-gradient-to-r ${t.gradient} !text-white border-transparent ${(t.iconClass = "!text-white")}`
               : t.disabled
@@ -81,7 +81,7 @@ export default function TaskManager() {
   });
 
   return (
-    <>
+    <div className=" w-full">
       <div className="relative">
         <Tabs
           activeKey={activeTab}
@@ -97,12 +97,13 @@ export default function TaskManager() {
           okText="Yes"
           cancelText="No"
         >
-          <div className="absolute top-3 right-0 px-4 py-[7px] rounded-xl font-semibold border shadow-sm cursor-pointer text-red-500">
+          <div className="absolute top-3 right-0 px-4 py-[6.2px] rounded-xl font-semibold border shadow-sm cursor-pointer text-red-500">
             <DeleteFilled /> delete All
           </div>
         </Popconfirm>
       </div>
-      <Tasks />
-    </>
+
+      <TasksContainer />
+    </div>
   );
 }
