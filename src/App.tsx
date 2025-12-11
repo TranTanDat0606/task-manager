@@ -54,7 +54,7 @@ function App() {
 
         <TabsNavigation />
 
-        <p className="absolute bottom-8 left-65">
+        <p className="absolute bottom-6 left-65">
           {completedTasks} of {totalTasks} tasks completed
         </p>
       </div>
